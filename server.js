@@ -1,10 +1,12 @@
 const express = require('express');
 const server = express();
 
-const Projects = require('./data/helpers/projectModel');
-const Actions = require('./data/helpers/actionModel');
+const ProjectRouter = require('./routes/projectRouter');
+const ActionRouter = require('./routes/actionRouter');
 
 server.use(express.json());
+server.use('/projects', ProjectRouter);
+server.use('/actions', ActionRouter);
 
 server.get('/', (req, res) => {
     res.send(`<h2>API Challenge</h2>`)
