@@ -15,6 +15,16 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/:id', validateId, async (req, res) => {
+    const { id } = req.params;
+    try {
+        const ProjectActions = await Projects.getProjectActions(id)
+        res.status(200).json(ProjectActions)
+    } catch {
+        res.status(500).json({ error: 'Could not get project actions from database' })
+    }
+})
+
 // POST
 
 router.post('/', async (req, res) => {
